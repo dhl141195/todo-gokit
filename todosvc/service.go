@@ -11,10 +11,10 @@ import (
 
 // Service is interface of user apis service
 type Service interface {
-	// GetTodos(ctx context.Context, r GetTodosRequest) (*GetTodosResponse, error)
+	GetTodos(ctx context.Context, r GetTodosRequest) (*GetTodosResponse, error)
 	CreateTodo(ctx context.Context, r CreateTodoRequest) (*CreateTodoResponse, error)
 	// UpdateTodo(ctx context.Context, r UpdateTodoRequest) (*UpdateTodoResponse, error)
-	// DeleteTodo(ctx context.Context, r DeleteTodoRequest) (*DeleteTodoResponse, error)
+	DeleteTodo(ctx context.Context, r DeleteTodoRequest) (*DeleteTodoResponse, error)
 }
 
 type service struct {
