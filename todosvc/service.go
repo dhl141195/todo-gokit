@@ -3,7 +3,6 @@ package todosvc
 import (
 	"context"
 	"errors"
-	"fmt"
 	"strings"
 	"time"
 
@@ -53,8 +52,18 @@ func (s *service) CreateTodo(ctx context.Context, r CreateTodoRequest) (*CreateT
 }
 
 func (s *service) DeleteTodo(ctx context.Context, r DeleteTodoRequest) (*DeleteTodoResponse, error) {
-	fmt.Print("%v", r.ID)
-	return nil, nil
+	err := s.todoRepo.Delete(r.ID)
+	if err != nil {
+		return &DeleteTodoResponse{
+			Status: "Error",
+			Error:  err.Error(),
+		}, err
+	}
+
+	return &DeleteTodoResponse{
+		Status: "Success",
+		Error:  "",
+	}, nil
 }
 
 func getTodoResponse(todo *todo.Todo) TodoResponse {

@@ -20,6 +20,7 @@ var (
 type Repository interface {
 	GetByID(id string) (*Todo, error)
 	Save(todo *Todo) error
+	Delete(id string) error
 	// Get(*db.Query) ([]Todo, *db.Paging, error)
 }
 
@@ -51,6 +52,11 @@ func (repo *repository) Save(todo *Todo) error {
 	}
 	_, err := repo.mongo.DB.C(collectionName).UpsertId(todo.ID, todo)
 
+	return err
+}
+
+func (repo *repository) Delete(id string) error {
+	err := repo.mongo.DB.C(collectionName).RemoveId(id)
 	return err
 }
 
