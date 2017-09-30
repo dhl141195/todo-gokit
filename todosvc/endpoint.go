@@ -12,3 +12,10 @@ func makeCreateTodoEndpoint(svc Service) endpoint.Endpoint {
 		return svc.CreateTodo(ctx, r)
 	}
 }
+
+func makeDeleteTodoEndpoint(svc Service) endpoint.Endpoint {
+	return func(ctx context.Context, req interface{}) (interface{}, error) {
+		r := req.(DeleteTodoRequest)
+		return svc.DeleteTodo(ctx, r)
+	}
+}

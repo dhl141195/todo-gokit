@@ -3,6 +3,7 @@ package todosvc
 import (
 	"context"
 	"errors"
+	"fmt"
 	"strings"
 	"time"
 
@@ -14,7 +15,7 @@ type Service interface {
 	// GetTodos(ctx context.Context, r GetTodosRequest) (*GetTodosResponse, error)
 	CreateTodo(ctx context.Context, r CreateTodoRequest) (*CreateTodoResponse, error)
 	// UpdateTodo(ctx context.Context, r UpdateTodoRequest) (*UpdateTodoResponse, error)
-	// DeleteTodo(ctx context.Context, r DeleteTodoRequest) (*DeleteTodoResponse, error)
+	DeleteTodo(ctx context.Context, r DeleteTodoRequest) (*DeleteTodoResponse, error)
 }
 
 type service struct {
@@ -49,6 +50,11 @@ func (s *service) CreateTodo(ctx context.Context, r CreateTodoRequest) (*CreateT
 	return &CreateTodoResponse{
 		TodoResponse: getTodoResponse(todo),
 	}, nil
+}
+
+func (s *service) DeleteTodo(ctx context.Context, r DeleteTodoRequest) (*DeleteTodoResponse, error) {
+	fmt.Print("%v", r.ID)
+	return nil, nil
 }
 
 func getTodoResponse(todo *todo.Todo) TodoResponse {
