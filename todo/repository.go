@@ -3,9 +3,8 @@ package todo
 import (
 	"errors"
 
+	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
-
-	"gopkg.in/mgo.v2"
 
 	"github.com/dhl1402/todo-gokit/db"
 )
