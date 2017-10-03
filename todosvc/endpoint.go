@@ -6,6 +6,13 @@ import (
 	"github.com/go-kit/kit/endpoint"
 )
 
+func makeGetTodosEndpoint(svc Service) endpoint.Endpoint {
+	return func(ctx context.Context, req interface{}) (interface{}, error) {
+		r := req.(GetTodosRequest)
+		return svc.GetTodos(ctx, r)
+	}
+}
+
 func makeCreateTodoEndpoint(svc Service) endpoint.Endpoint {
 	return func(ctx context.Context, req interface{}) (interface{}, error) {
 		r := req.(CreateTodoRequest)

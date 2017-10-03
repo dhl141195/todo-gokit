@@ -7,12 +7,14 @@ type TodoResponse struct {
 }
 
 type GetTodosRequest struct {
-	Limit int
+	Limit   int
+	Status  string
+	Keyword string
 }
 
 type GetTodosResponse struct {
-	Total int            `json:"total"`
-	Todos []TodoResponse `json:"todos"`
+	Total int         `json:"total"`
+	Todos []todo.Todo `json:"todos"`
 }
 
 type CreateTodoRequest struct {
